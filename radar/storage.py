@@ -2,7 +2,7 @@
 import json
 import os
 import sqlite3
-from contextlib import contextmanager
+from contextlib import closing,contextmanager
 from datetime import datetime,timezone
 from pathlib import Path
 from .domain import normalize_item,source_section
@@ -19,12 +19,12 @@ class Store:
         dbfile=self.path/'radar.sqlite3'
         oldversion=0
         if dbfile.exists():
-            with sqlite3.connect(dbfile) as c:oldversion=c.execute('PRAGMA user_version').fetchone()[0]
+            with closing(sqlite3.connect(dbfile)) as c:oldversion=c.execute('PRAGMA user_version').fetchone()[0]
             if oldversion>2:raise ValueError('Database is from a newer Radar version. Open it with that version; do not downgrade.')
             if oldversion<2:
                 backups=self.path/'backups';backups.mkdir(exist_ok=True)
                 backup=backups/('before-v2-'+datetime.now(timezone.utc).strftime('%Y%m%d-%H%M%S-%f')+'.sqlite3')
-                with sqlite3.connect(dbfile) as c,sqlite3.connect(backup) as dest:c.backup(dest)
+                with closing(sqlite3.connect(dbfile)) as c,closing(sqlite3.connect(backup)) as dest:c.backup(dest)
         with self.db() as c:
             c.executescript('''CREATE TABLE IF NOT EXISTS meta(key TEXT PRIMARY KEY,value TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS sources(id TEXT PRIMARY KEY,body TEXT NOT NULL);
@@ -43,10 +43,11 @@ class Store:
         self.seed()
     @contextmanager
     def db(self):
-        c=sqlite3.connect(self.path/'radar.sqlite3',timeout=20);c.row_factory=sqlite3.Row;c.execute('PRAGMA journal_mode=WAL')
-        try:
+        # SQLite's transaction context manager does not close the connection.
+        # Close deterministically, even if connection setup or a query raises.
+        with closing(sqlite3.connect(self.path/'radar.sqlite3',timeout=20)) as c:
+            c.row_factory=sqlite3.Row;c.execute('PRAGMA journal_mode=WAL')
             with c:yield c
-        finally:c.close()
     def get(self,key,default=None):
         with self.db() as c:r=c.execute('SELECT value FROM meta WHERE key=?',(key,)).fetchone()
         return json.loads(r[0]) if r else default
@@ -81,7 +82,7 @@ class Store:
         with tempfile.TemporaryDirectory() as t:
             db=Path(t)/'radar.sqlite3'
             with self.db() as c:
-                dest=sqlite3.connect(db);c.backup(dest);dest.close()
+                with closing(sqlite3.connect(db)) as dest:c.backup(dest)
             with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as z:
                 z.write(db,'radar.sqlite3')
                 for p in (self.path/'resumes').iterdir():

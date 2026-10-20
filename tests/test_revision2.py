@@ -1,5 +1,6 @@
 """Regression tests for data upgrades, truthful qualification colors and source coverage."""
 import copy
+from contextlib import closing
 import json
 import sqlite3
 import tempfile
@@ -76,12 +77,47 @@ class RevisionTests(unittest.TestCase):
   with self.store.db() as c:c.execute('PRAGMA user_version=1')
   again=Store(self.tmp.name);saved=next(x for x in again.rows('items') if x['id']==j['id']);self.assertEqual(saved['progress'],'Applied');self.assertTrue(saved['pinned']);self.assertEqual(saved['notes'],'Keep this note')
   backups=list((Path(self.tmp.name)/'backups').glob('*.sqlite3'));self.assertEqual(len(backups),1)
-  with sqlite3.connect(backups[0]) as c:
+  with closing(sqlite3.connect(backups[0])) as c:
    self.assertEqual(c.execute('PRAGMA user_version').fetchone()[0],1);self.assertNotIn('pinned',json.loads(c.execute('SELECT body FROM items WHERE id=?',(j['id'],)).fetchone()[0]))
   Store(self.tmp.name);self.assertEqual(len(list((Path(self.tmp.name)/'backups').glob('*.sqlite3'))),1)
  def test_newer_database_refuses_downgrade(self):
   with self.store.db() as c:c.execute('PRAGMA user_version=9')
   with self.assertRaisesRegex(ValueError,'newer'):Store(self.tmp.name)
+ def assert_connections_closed(self,connections):
+  self.assertTrue(connections)
+  for connection in connections:
+   with self.assertRaises(sqlite3.ProgrammingError):connection.execute('SELECT 1')
+ def test_database_connections_close_without_garbage_collection(self):
+  # Retain every connection so Linux cannot hide a Windows file-lock bug by GC.
+  real_connect=sqlite3.connect;connections=[]
+  def tracked_connect(*args,**kwargs):
+   connection=real_connect(*args,**kwargs);connections.append(connection);return connection
+  with patch('radar.storage.sqlite3.connect',side_effect=tracked_connect):
+   Store(self.tmp.name);self.store.backup()
+   with self.store.db() as c:c.execute('PRAGMA user_version=1')
+   Store(self.tmp.name)
+   with self.store.db() as c:c.execute('PRAGMA user_version=9')
+   with self.assertRaisesRegex(ValueError,'newer'):Store(self.tmp.name)
+  try:self.assert_connections_closed(connections)
+  finally:
+   for connection in connections:connection.close()
+ def test_database_connections_close_when_setup_or_backup_fails(self):
+  real_connect=sqlite3.connect
+  for failure in ('setup','backup'):
+   connections=[]
+   class FailingConnection(sqlite3.Connection):
+    def execute(self,sql,*args,**kwargs):
+     if failure=='setup' and sql=='PRAGMA journal_mode=WAL':raise RuntimeError('Simulated setup failure')
+     return super().execute(sql,*args,**kwargs)
+    def backup(self,*args,**kwargs):raise RuntimeError('Simulated backup failure')
+   def tracked_connect(*args,**kwargs):
+    connection=real_connect(*args,factory=FailingConnection,**kwargs);connections.append(connection);return connection
+   try:
+    with patch('radar.storage.sqlite3.connect',side_effect=tracked_connect):
+     with self.assertRaisesRegex(RuntimeError,'Simulated'):self.store.backup()
+    self.assert_connections_closed(connections)
+   finally:
+    for connection in connections:connection.close()
  def test_briefing_snapshot_and_response_never_change_jobs(self):
   j=self.add();self.engine.update_item({'id':j['id'],'pinned':True,'notes':'My context'})
   before=self.store.rows('items');r=self.engine.create_briefing(7);self.assertIn('My context',r['prompt']);self.assertIn('Source coverage',r['prompt']);self.assertIn('Do not infer industry-wide',r['prompt'])
