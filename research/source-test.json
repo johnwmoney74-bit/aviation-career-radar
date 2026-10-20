@@ -1,0 +1,322 @@
+{
+  "tested_at": "2026-10-17T19:20:22+00:00",
+  "summary": {
+    "at": "2026-10-17T19:20:22+00:00",
+    "new": 0,
+    "failed": 2,
+    "checked": 17
+  },
+  "tracked_records": 9,
+  "sources": [
+    {
+      "name": "FAA newsroom",
+      "url": "https://www.faa.gov/newsroom",
+      "method": "page",
+      "status": "not checked",
+      "last_attempt": null,
+      "last_success": null,
+      "checked_count": 0,
+      "message": "Optional page-change watch; broad regulatory news, not a job feed."
+    },
+    {
+      "name": "Ameriflight pilots",
+      "url": "https://w3.ameriflight.com/pilots/",
+      "method": "manual",
+      "status": "not checked",
+      "last_attempt": null,
+      "last_success": null,
+      "checked_count": 0,
+      "message": "HTTP 403 during direct-access audit; manual review."
+    },
+    {
+      "name": "United Aviate university route",
+      "url": "https://unitedaviate.com/aviate-program-career-paths/attending-a-university/",
+      "method": "manual",
+      "status": "not checked",
+      "last_attempt": null,
+      "last_success": null,
+      "checked_count": 0,
+      "message": "Airline page blocked during research; manual review."
+    },
+    {
+      "name": "JSfirm aviation listings",
+      "url": "https://www.jsfirm.com/",
+      "method": "manual",
+      "status": "not checked",
+      "last_attempt": null,
+      "last_success": null,
+      "checked_count": 0,
+      "message": "Useful discovery board; automated access not established."
+    },
+    {
+      "name": "Airline Apps",
+      "url": "https://www.airlineapps.com/",
+      "method": "manual",
+      "status": "not checked",
+      "last_attempt": null,
+      "last_success": null,
+      "checked_count": 0,
+      "message": "Public discovery and application links; account actions stay manual."
+    },
+    {
+      "name": "Handshake",
+      "url": "https://app.joinhandshake.com/",
+      "method": "manual",
+      "status": "not checked",
+      "last_attempt": null,
+      "last_success": null,
+      "checked_count": 0,
+      "message": "Student login required. Use alerts/import later; no bulk scraping."
+    },
+    {
+      "name": "Flexjet pilot careers",
+      "url": "https://careers.flexjet.com/us/en/US-pilot",
+      "method": "manual",
+      "status": "not checked",
+      "last_attempt": null,
+      "last_success": null,
+      "checked_count": 0,
+      "message": "Employer policy research; automated adapter not tested."
+    },
+    {
+      "name": "Envoy pilot careers",
+      "url": "https://www.envoyair.com/careers/pilots/",
+      "method": "manual",
+      "status": "not checked",
+      "last_attempt": null,
+      "last_success": null,
+      "checked_count": 0,
+      "message": "Official career page located in research; automatic adapter not yet tested."
+    },
+    {
+      "name": "Piedmont pilot careers",
+      "url": "https://piedmont-airlines.com/pilots/",
+      "method": "manual",
+      "status": "not checked",
+      "last_attempt": null,
+      "last_success": null,
+      "checked_count": 0,
+      "message": "Official career page located in research; automatic adapter not yet tested."
+    },
+    {
+      "name": "SkyWest pilot careers",
+      "url": "https://www.skywest.com/skywest-airline-jobs/career-guides/pilot-jobs/",
+      "method": "manual",
+      "status": "not checked",
+      "last_attempt": null,
+      "last_success": null,
+      "checked_count": 0,
+      "message": "Official career page located in research; automatic adapter not yet tested."
+    },
+    {
+      "name": "ABX Air pilot careers",
+      "url": "https://www.abxair.com/careers/abx-air-pilots",
+      "method": "manual",
+      "status": "not checked",
+      "last_attempt": null,
+      "last_success": null,
+      "checked_count": 0,
+      "message": "Official career page located in research; automatic adapter not yet tested."
+    },
+    {
+      "name": "Air Transport International pilot careers",
+      "url": "https://www.airtransport.cc/pilots",
+      "method": "manual",
+      "status": "not checked",
+      "last_attempt": null,
+      "last_success": null,
+      "checked_count": 0,
+      "message": "Official career page located in research; automatic adapter not yet tested."
+    },
+    {
+      "name": "FedEx pilot careers",
+      "url": "https://careers.fedex.com/career-areas/pilot/jobs",
+      "method": "manual",
+      "status": "not checked",
+      "last_attempt": null,
+      "last_success": null,
+      "checked_count": 0,
+      "message": "Official career page located in research; automatic adapter not yet tested."
+    },
+    {
+      "name": "United Airlines pilot careers",
+      "url": "https://careers.united.com/pilots",
+      "method": "manual",
+      "status": "not checked",
+      "last_attempt": null,
+      "last_success": null,
+      "checked_count": 0,
+      "message": "Official career page located in research; automatic adapter not yet tested."
+    },
+    {
+      "name": "Ohio University CFI searches",
+      "url": "https://www.ohiouniversityjobs.com/postings/search?query=flight",
+      "method": "page",
+      "status": "blocked",
+      "last_attempt": "2026-10-17T19:19:48+00:00",
+      "last_success": null,
+      "checked_count": 0,
+      "message": "robots.txt disallows this path; automatic requests skipped."
+    },
+    {
+      "name": "Sinclair flight searches",
+      "url": "https://jobs.sinclair.edu/postings/search?query=flight",
+      "method": "page",
+      "status": "blocked",
+      "last_attempt": "2026-10-17T19:19:50+00:00",
+      "last_success": null,
+      "checked_count": 0,
+      "message": "robots.txt disallows this path; automatic requests skipped."
+    },
+    {
+      "name": "Ohio State Airport careers",
+      "url": "https://osuairport.org/welcome-ohio-state-university-airport/careers",
+      "method": "page",
+      "status": "checked",
+      "last_attempt": "2026-10-17T19:19:52+00:00",
+      "last_success": "2026-10-17T19:19:52+00:00",
+      "checked_count": 0,
+      "message": "0 matching listing links/postings found. robots.txt allows this path; site terms still apply."
+    },
+    {
+      "name": "KSU employment",
+      "url": "https://jobs.kent.edu/jobs/search",
+      "method": "page",
+      "status": "checked",
+      "last_attempt": "2026-10-17T19:19:52+00:00",
+      "last_success": "2026-10-17T19:19:52+00:00",
+      "checked_count": 0,
+      "message": "0 matching listing links/postings found. robots.txt allows this path; site terms still apply."
+    },
+    {
+      "name": "Republic pilot search",
+      "url": "https://careers.rjet.com/jobs/?team=Pilot",
+      "method": "page",
+      "status": "checked",
+      "last_attempt": "2026-10-17T19:19:55+00:00",
+      "last_success": "2026-10-17T19:19:55+00:00",
+      "checked_count": 2,
+      "message": "2 matching listing links/postings found. robots.txt allows this path; site terms still apply."
+    },
+    {
+      "name": "NetJets pilot careers",
+      "url": "https://www.netjets.com/en-us/netjets-careers-pilot-jobs",
+      "method": "page",
+      "status": "checked",
+      "last_attempt": "2026-10-17T19:20:00+00:00",
+      "last_success": "2026-10-17T19:20:00+00:00",
+      "checked_count": 0,
+      "message": "0 matching listing links/postings found. robots.txt allows this path; site terms still apply."
+    },
+    {
+      "name": "KSU pathway directory",
+      "url": "https://www.kent.edu/cae/pilot-pathway-programs",
+      "method": "page",
+      "status": "checked",
+      "last_attempt": "2026-10-17T19:20:02+00:00",
+      "last_success": "2026-10-17T19:20:02+00:00",
+      "checked_count": 0,
+      "message": "Page checked for changes; program/news facts still require review."
+    },
+    {
+      "name": "JetBlue Gateway University",
+      "url": "https://www.jetbluegateways.com/university-flight-ops",
+      "method": "page",
+      "status": "checked",
+      "last_attempt": "2026-10-17T19:20:02+00:00",
+      "last_success": "2026-10-17T19:20:02+00:00",
+      "checked_count": 0,
+      "message": "Page checked for changes; program/news facts still require review."
+    },
+    {
+      "name": "Delta Propel",
+      "url": "https://www.delta.com/us/en/careers/pilots/propel",
+      "method": "page",
+      "status": "checked",
+      "last_attempt": "2026-10-17T19:20:04+00:00",
+      "last_success": "2026-10-17T19:20:04+00:00",
+      "checked_count": 0,
+      "message": "Page checked for changes; program/news facts still require review."
+    },
+    {
+      "name": "KSU Aeronautics announcements",
+      "url": "https://www.kent.edu/aeronautics",
+      "method": "page",
+      "status": "checked",
+      "last_attempt": "2026-10-17T19:20:08+00:00",
+      "last_success": "2026-10-17T19:20:08+00:00",
+      "checked_count": 0,
+      "message": "Page checked for changes; program/news facts still require review."
+    },
+    {
+      "name": "Southwest university pathway",
+      "url": "https://careers.southwestair.com/us/en/D225University",
+      "method": "page",
+      "status": "checked",
+      "last_attempt": "2026-10-17T19:20:08+00:00",
+      "last_success": "2026-10-17T19:20:08+00:00",
+      "checked_count": 0,
+      "message": "Page checked for changes; program/news facts still require review."
+    },
+    {
+      "name": "Allegiant pilot and pathway notices",
+      "url": "https://www.allegiantair.jobs/careers/pilots/",
+      "method": "page",
+      "status": "checked",
+      "last_attempt": "2026-10-17T19:20:12+00:00",
+      "last_success": "2026-10-17T19:20:12+00:00",
+      "checked_count": 0,
+      "message": "Page checked for changes; program/news facts still require review."
+    },
+    {
+      "name": "FAPA recruiting events",
+      "url": "https://www.fapa.aero/events",
+      "method": "page",
+      "status": "checked",
+      "last_attempt": "2026-10-17T19:20:14+00:00",
+      "last_success": "2026-10-17T19:20:14+00:00",
+      "checked_count": 0,
+      "message": "Page checked for changes; program/news facts still require review."
+    },
+    {
+      "name": "T&G Flying Club careers",
+      "url": "https://www.tandgflying.com/careers.html",
+      "method": "page",
+      "status": "checked",
+      "last_attempt": "2026-10-17T19:20:17+00:00",
+      "last_success": "2026-10-17T19:20:17+00:00",
+      "checked_count": 1,
+      "message": "1 matching listing links/postings found. robots.txt allows this path; site terms still apply."
+    },
+    {
+      "name": "Allegiant public Lever postings",
+      "url": "https://api.lever.co/v0/postings/allegiantair?mode=json",
+      "method": "lever",
+      "status": "checked",
+      "last_attempt": "2026-10-17T19:20:17+00:00",
+      "last_success": "2026-10-17T19:20:17+00:00",
+      "checked_count": 0,
+      "message": "0 matching listing links/postings found. robots.txt allows this path; site terms still apply."
+    },
+    {
+      "name": "ProAv Aircraft Services careers",
+      "url": "https://www.proavaircraft.com/join-our-team-cfi",
+      "method": "page",
+      "status": "checked",
+      "last_attempt": "2026-10-17T19:20:20+00:00",
+      "last_success": "2026-10-17T19:20:20+00:00",
+      "checked_count": 1,
+      "message": "1 matching listing links/postings found. robots.txt allows this path; site terms still apply."
+    },
+    {
+      "name": "Griffing Flying Service careers",
+      "url": "https://flygriffing.com/careers/",
+      "method": "page",
+      "status": "checked",
+      "last_attempt": "2026-10-17T19:20:22+00:00",
+      "last_success": "2026-10-17T19:20:22+00:00",
+      "checked_count": 1,
+      "message": "1 matching listing links/postings found. robots.txt allows this path; site terms still apply."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+AVIATION CAREER RADAR — REVISION 0.2.0
+
+This ZIP contains the next real revision's SOURCE FILES.
+Use your existing GitHub repository to build the Windows application.
+
+1. Back up your current Radar data and exit the current application.
+2. Extract this ZIP. Upload its CONTENTS to the root of your existing repo,
+   replacing matching files. Do not upload your personal data or backup.
+3. Ensure VERSION at the repo root says 0.2.0.
+4. Use Actions > Build Windows application > Run workflow.
+5. Download Aviation-Career-Radar-Windows from the successful run's Artifacts.
+6. Extract the FULL artifact folder and open AviationCareerRadar.exe.
+
+Read START-HERE-GITHUB.md for exact instructions, including the .github folder
+workaround and preserving your existing data. No terminal is needed for normal use.

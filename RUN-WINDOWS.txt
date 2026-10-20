@@ -1,0 +1,23 @@
+AVIATION CAREER RADAR 0.2.0 — WINDOWS APPLICATION
+
+Extract this ENTIRE folder before opening AviationCareerRadar.exe.
+Keep _internal and all other accompanying files beside the EXE.
+A small controller opens the dashboard in your normal browser.
+Use Exit Radar in the dashboard or the controller to quit.
+
+This application runs locally. No Python or terminal is needed for normal use.
+Refresh sources when you want updates; leave the app running until refresh finishes.
+
+Data is stored separately in:
+  %LOCALAPPDATA%\AviationCareerRadar
+Existing data is retained and automatically migrated, with a pre-upgrade database
+backup. Download a full private backup before switching versions. Do not run the
+old application against the upgraded database.
+
+New: career sections, My Opportunities, separate tracking controls, requirement
+colors, ChatGPT JSON profile imports, individual source diagnostics, and briefing
+export/import. Gray qualification indicators are expected until profile approval.
+
+The Sources workspace explains whether a site actually extracts records or only
+loads a page. Adding a URL is not a guarantee of automatic extraction.
+Logs: %LOCALAPPDATA%\AviationCareerRadar\logs
